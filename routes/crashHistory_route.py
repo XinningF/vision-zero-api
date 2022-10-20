@@ -11,7 +11,7 @@ api_router = APIRouter()
 @api_router.get("/")     
 async def get_histories():
     # histories = crashHistory_list(collection_name.find())
-    return crashHistory_list(collection_name.find_one(limit=1))
+    return crashHistory_list(collection_name.find(limit=1))
     # return list(collection_name.find_one({"LATITUDE": 40.885784}))
 
 @api_router.get("/test/")

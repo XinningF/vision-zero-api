@@ -14,18 +14,18 @@ async def get_histories():
     return crashHistory_list(collection_name.find(limit=1))
     # return list(collection_name.find_one({"LATITUDE": 40.885784}))
 
-@api_router.get("/test/")
-async def test(dayOfWeek:Union[int, None] = None, isAfterPandemic:Union[bool, None] = None):
-    queryList = []
-    if dayOfWeek:
-        queryList.append({"day_of_week": dayOfWeek})
-    if isAfterPandemic:
-        queryList.append({"after_pandemic": isAfterPandemic})
+# @api_router.get("/test/")
+# async def test(dayOfWeek:Union[int, None] = None, isAfterPandemic:Union[bool, None] = None):
+#     queryList = []
+#     if dayOfWeek:
+#         queryList.append({"day_of_week": dayOfWeek})
+#     if isAfterPandemic:
+#         queryList.append({"after_pandemic": isAfterPandemic})
     
-    print(queryList)
-    if not queryList:
-        return crashHistory_list(collection_name.find(limit=1)) 
-    return crashHistory_list(collection_name.find({"$and": queryList})) 
+#     print(queryList)
+#     if not queryList:
+#         return crashHistory_list(collection_name.find(limit=1)) 
+#     return crashHistory_list(collection_name.find({"$and": queryList})) 
 
 # TODO: date data type
 @api_router.get("/getCrashHistory/")

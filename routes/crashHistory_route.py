@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query
 from models.crashHistory_model import CrashHistory
 from config.database import collection_name, intersection_dangerousity
-from schemas.crashHistory_schema import crashHistory_list, crashHistory_serializer
+from schemas.crashHistory_schema import crashHistory_list, crashHistory_serializer, intersectionScore_list
 from bson import ObjectId
 from datetime import date, datetime
 from typing import Union
@@ -150,14 +150,7 @@ async def get_score(longitude: float, latitude: float):
     if not longitude or not latitude:
         return {"error": "please input position information: [latitude, longitude]"}
         
-    position = intersection_dangerousity.find({"loc": {"$within": {"$center": [pos, 5]}}})
+    position = intersection_dangerousity.find({"loc": {"$within": {"$center": [[latitude, longitude], 5]}}})
     if not position: return {"error": "No data nearby. Please search for another position."}
 
-    ct = 0
-    sum = 0
-    for pos in position:
-        ct += 1
-        sum += pos["casualties_count"]
-    
-    score = sum / ct
-    return {"pos": pos, "score": score}
+    return intersectionScore_list(position) 

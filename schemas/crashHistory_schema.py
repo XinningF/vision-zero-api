@@ -55,4 +55,14 @@ def crashHistory_serializer(history) -> dict:
 
 def crashHistory_list(histories) -> list:
     return [crashHistory_serializer(history) for history in histories]
+
+def intersectionScore_serializer(history) -> dict:
+    return {
+        "coordinates": history["loc"],
+        "CONTRIBUTING FACTOR VEHICLE 1": history["CONTRIBUTING FACTOR VEHICLE 1"],
+        "casualties_count": history["casualties_count"]
+    }
+
+def intersectionScore_list(histories) -> list:
+    return [intersectionScore_serializer(history) for history in histories]
     

@@ -150,7 +150,7 @@ async def get_score(longitude: float, latitude: float):
     if not longitude or not latitude:
         return {"error": "please input position information: [latitude, longitude]"}
         
-    position = intersection_dangerousity.find({"loc": {"$within": {"$center": [[latitude, longitude], 0.0005]}}})
+    position = intersection_dangerousity.find({"loc": {"$within": {"$center": [[longitude, latitude], 0.0005]}}})
     if not position: return {"error": "No data nearby. Please search for another position."}
 
     return intersectionScore_list(position) 

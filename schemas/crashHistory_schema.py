@@ -59,8 +59,9 @@ def crashHistory_list(histories) -> list:
 def intersectionScore_serializer(history) -> dict:
     return {
         "coordinates": history["loc"],
-        "CONTRIBUTING FACTOR VEHICLE 1": history["CONTRIBUTING FACTOR VEHICLE 1"],
-        "casualties_count": history["casualties_count"]
+        "contriburting_factor": history["CONTRIBUTING FACTOR VEHICLE 1"],
+        "casualties_count": history["casualties_count"],
+        "intersection": history["intersection"]
     }
 
 def intersectionScore_list(histories) -> list:
